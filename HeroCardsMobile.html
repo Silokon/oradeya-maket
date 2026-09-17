@@ -56,7 +56,7 @@
   .trust { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 14px; padding: 24px 16px; background: #16213d; color: #fffdf9; font-size: 14px; font-weight: 700; line-height: 1.3; }
   .trust div { display: flex; flex-direction: column; gap: 8px; }
 
-  .replay { position: fixed; right: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: #e8a13a; color: #16213d; font: 800 13px Manrope, sans-serif; cursor: pointer; box-shadow: 0 12px 30px -12px rgba(22, 33, 61, 0.7); z-index: 50; }
+  .replay { position: fixed; right: 14px; bottom: 14px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px; background: #e8a13a; color: #16213d; font: 800 13px Manrope, sans-serif; cursor: pointer; box-shadow: 0 12px 30px -12px rgba(22, 33, 61, 0.7); z-index: 50; }
   @media (prefers-reduced-motion: reduce) { .fly { animation: none; } }
 </style>
 </head>
@@ -118,6 +118,6 @@
   </section>
 </div>
 
-<button class="replay" onclick="location.reload()">Повторить анимацию</button>
+<button class="replay" onclick="location.reload()" aria-label="Повторить анимацию"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16213d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg></button>
 </body>
 </html>

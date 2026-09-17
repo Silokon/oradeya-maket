@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<script src="i18n.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Вариант G: расклад на&#160;столе</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap">
@@ -144,7 +145,7 @@
   const slotLabels = labels.map((text) => {
     const el = document.createElement('div')
     el.className = 'slot-label hide'
-    el.textContent = text
+    el.textContent = t(text)
     table.appendChild(el)
     return el
   })
@@ -183,7 +184,7 @@
       stack(g)
       await sleep(650)
     }
-    document.getElementById('question-text').textContent = data.question
+    document.getElementById('question-text').textContent = t(data.question)
     question.classList.remove('hide')
     const dealt = deck.slice(0, 3)
     for (let i = 0; i < 3; i++) {
@@ -217,7 +218,7 @@
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const g = geometry()
       deck.slice(0, 3).forEach((el, i) => { el.style.transition = 'none'; place(el, g.slots[i].x, g.slots[i].y); el.classList.add('open') })
-      document.getElementById('question-text').textContent = rounds[0].question
+      document.getElementById('question-text').textContent = t(rounds[0].question)
       question.classList.remove('hide')
       return
     }

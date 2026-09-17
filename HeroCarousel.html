@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<script src="i18n.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Вариант F: карусель карт</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap">
@@ -163,8 +164,8 @@
     els.forEach((el, i) => el.classList.toggle('front', i === index))
     chip.classList.add('fade')
     setTimeout(() => {
-      document.getElementById('chip-label').textContent = cards[index].label
-      document.getElementById('chip-text').textContent = cards[index].text
+      document.getElementById('chip-label').textContent = t(cards[index].label)
+      document.getElementById('chip-text').textContent = t(cards[index].text)
       chip.classList.remove('fade')
     }, 650)
   }

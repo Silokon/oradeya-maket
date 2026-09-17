@@ -60,6 +60,7 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>
       Повторить анимацию
     </button>
+    <button class="tool" id="lang" type="button" aria-label="Язык макета">EN</button>
     <a class="tool" id="open" target="_blank" rel="noopener">Открыть отдельно</a>
   </div>
 </div>
@@ -80,6 +81,23 @@
   const stage = document.getElementById('stage')
   const note = document.getElementById('note')
   const open = document.getElementById('open')
+  const langBtn = document.getElementById('lang')
+  let lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'ru'
+  let currentKey = null
+  function setLang(next) {
+    lang = next
+    const url = new URL(location.href)
+    if (lang === 'en') url.searchParams.set('lang', 'en')
+    else url.searchParams.delete('lang')
+    history.replaceState(null, '', url.pathname + url.search + '#' + currentKey)
+    langBtn.textContent = lang === 'en' ? 'RU' : 'EN'
+    show(currentKey)
+  }
+  langBtn.textContent = lang === 'en' ? 'RU' : 'EN'
+  langBtn.addEventListener('click', () => setLang(lang === 'en' ? 'ru' : 'en'))
+  window.addEventListener('message', (e) => {
+    if (e.data && e.data.type === 'oradeya-lang') setLang(e.data.lang)
+  })
 
   const items = []
   for (const v of variants) {
@@ -112,7 +130,8 @@
     const item = items.find((i) => i.key === key) || items[0]
     for (const b of tabs.children) b.setAttribute('aria-selected', String(b.dataset.key === item.key))
     note.innerHTML = item.v.note + (item.device === 'phone' ? ' Версия для телефона.' : '')
-    const file = item.device === 'phone' ? item.v.phone : item.v.file
+    currentKey = item.key
+    const file = (item.device === 'phone' ? item.v.phone : item.v.file) + (lang === 'en' ? '?lang=en' : '')
     open.href = file
     stage.innerHTML = ''
     const frame = document.createElement('iframe')
@@ -149,7 +168,7 @@
       fit()
     }
     stage.scrollTop = 0
-    history.replaceState(null, '', '#' + item.key)
+    history.replaceState(null, '', location.pathname + location.search + '#' + item.key)
   }
 
   document.getElementById('replay').addEventListener('click', () => {

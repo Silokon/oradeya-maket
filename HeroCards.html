@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Вариант D: карты прилетают</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f7f1e7; color: #16213d; font-family: Manrope, 'Segoe UI', Arial, sans-serif; line-height: 1.5; }
+  a { color: inherit; text-decoration: none; }
+  h1, h3, p { margin: 0; }
+  .serif { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; }
+  .page { width: 1280px; margin: 0 auto; background: #f7f1e7; overflow: hidden; }
+
+  .strip { display: flex; justify-content: center; align-items: center; gap: 10px; height: 40px; background: #16213d; color: #f7f1e7; font-size: 14px; font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 999px; background: #e8a13a; }
+  header { display: flex; align-items: center; justify-content: space-between; height: 80px; padding: 0 56px; background: #fffdf9; border-bottom: 1px solid #e6dccb; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo span { font-size: 21px; font-weight: 600; letter-spacing: 0.22em; }
+  nav { display: flex; gap: 34px; font-size: 15px; font-weight: 600; }
+  .head-right { display: flex; align-items: center; gap: 12px; }
+  .lang { display: inline-flex; align-items: center; height: 40px; padding: 0 14px; border: 1px solid #e6dccb; border-radius: 999px; font-size: 14px; font-weight: 700; }
+  .btn-dark { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: 999px; background: #16213d; color: #fffdf9; font-size: 15px; font-weight: 700; }
+
+  .hero { position: relative; height: 800px; background: radial-gradient(ellipse 60% 55% at 50% 45%, #fffaf1 0%, #f7f1e7 70%); }
+  .center { position: absolute; left: 50%; top: 96px; width: 620px; transform: translateX(-50%); text-align: center; z-index: 5; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: #16213d; color: #fffdf9; font-size: 13px; font-weight: 700; }
+  .badge i { width: 8px; height: 8px; border-radius: 999px; background: #3fbf7f; }
+  h1 { margin-top: 24px; font-size: 54px; line-height: 1.02; font-weight: 600; }
+  h1 em { font-style: italic; color: #b8781c; }
+  .lead { margin: 20px auto 0; max-width: 540px; font-size: 18px; color: #3e4763; }
+  .cta { display: inline-flex; align-items: center; gap: 12px; height: 62px; margin-top: 34px; padding: 0 34px; border-radius: 999px; background: #e8a13a; color: #16213d; font-size: 18px; font-weight: 800; box-shadow: 0 18px 36px -18px rgba(185, 120, 28, 0.9); }
+  .center .facts { margin-top: 20px; }
+  .center .note, .center .facts { width: fit-content; margin-left: auto; margin-right: auto; }
+  .proof { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 30px; }
+  .avatars { display: flex; }
+  .avatars img { width: 44px; height: 44px; border-radius: 999px; object-fit: cover; border: 3px solid #f7f1e7; }
+  .avatars img + img { margin-left: -12px; }
+  .proof p { font-size: 14px; color: #676d80; text-align: left; }
+  .proof b { color: #16213d; }
+  .lead + .lead { margin-top: 10px; font-size: 17px; }
+  .note { margin-top: 16px; font-size: 15px; font-weight: 800; color: #9a5f10; }
+  .facts { margin-top: 22px; font-size: 14px; font-weight: 700; color: #3e4763; }
+  .sep { margin: 0 6px; color: #e8a13a; }
+  .stars { color: #d9901f; letter-spacing: 1px; }
+
+  .slot { position: absolute; }
+  .fly { animation: fly 2.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .float { animation: float 9s ease-in-out infinite; }
+  .card { transform: rotate(var(--r)); }
+  @keyframes fly {
+    0% { transform: translate(var(--fx), var(--fy)) rotate(var(--fr)) scale(0.94); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(0.6deg); }
+  }
+  .tcard { position: relative; width: 196px; padding: 8px; border-radius: 16px; background: #fffdf9; box-shadow: 0 34px 60px -30px rgba(22, 33, 61, 0.55); }
+  .tcard img { display: block; width: 100%; height: auto; border-radius: 8px; outline: 1.5px solid #16213d; outline-offset: -1px; }
+  .tcard div { position: absolute; left: 50%; bottom: -24px; transform: translateX(-50%); padding: 7px 16px 8px; border-radius: 999px; background: #16213d; color: #fffdf9; text-align: center; white-space: nowrap; box-shadow: 0 12px 24px -12px rgba(22, 33, 61, 0.7); }
+  .tcard small { display: block; font-size: 9px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #e8a13a; line-height: 1.3; }
+  .tcard p { font-size: 15px; line-height: 1.2; }
+
+  .replay { position: fixed; right: 20px; bottom: 20px; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #16213d; color: #fffdf9; font: 700 14px Manrope, sans-serif; cursor: pointer; box-shadow: 0 12px 30px -12px rgba(22, 33, 61, 0.7); z-index: 50; }
+
+  @media (prefers-reduced-motion: reduce) { .fly, .float { animation: none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="logo">
+      <svg width="36" height="36" viewBox="0 0 32 32" fill="none" stroke="#16213d" stroke-width="1.8" stroke-linecap="round"><path d="M7 26V15a9 9 0 0 1 18 0v11"/><path d="M4 26h24"/><path d="M11.5 26a4.5 4.5 0 0 1 9 0" stroke="#e8a13a"/><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5" stroke="#e8a13a"/></svg>
+      <span class="serif">ORADEYA</span>
+    </div>
+    <nav><a href="#">Консультанты</a><a href="#">Направления</a><a href="#">Как&#160;это работает</a><a href="#">Отзывы</a><a href="#">Вопросы</a></nav>
+    <div class="head-right"><span class="lang">EN</span><a class="btn-dark" href="#">Выбрать консультанта</a></div>
+  </header>
+
+  <section class="hero">
+    <div class="center">
+      <span class="badge"><i></i>Консультанты онлайн</span>
+      <h1 class="serif">Иногда полезно посмотреть на&#160;ситуацию <em>с&#160;другой стороны</em></h1>
+      <p class="lead">Когда мысли ходят по&#160;кругу, разговор с&#160;консультантом может помочь заметить то, что&#160;раньше ускользало из&#160;внимания.</p>
+      <p class="lead">Онлайн-консультации по&#160;таро и&#160;нумерологии: спокойно, лично и&#160;в&#160;удобном для&#160;вас темпе.</p>
+      <p class="note">Первые 3 минуты бесплатно для&#160;новых клиентов.</p>
+      <a class="cta" href="#">Выбрать консультанта
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16213d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <p class="facts">Чат <span class="sep">•</span> Без&#160;подписки <span class="sep">•</span> Оплата через Stripe</p>
+    </div>
+
+    <div class="slot" style="left: 84px; top: 70px;">
+      <div class="fly" style="--fx: -320px; --fy: -80px; --fr: -18deg; animation-delay: 0.1s;">
+        <div class="float" style="animation-delay: 2.5s;">
+          <div class="card tcard" style="--r: -10deg;">
+            <img src="tarot/two-of-cups-crop.jpg" alt="">
+            <div><small>Отношения</small><p class="serif">Он тот самый?</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slot" style="left: 150px; top: 430px;">
+      <div class="fly" style="--fx: -300px; --fy: 140px; --fr: 16deg; animation-delay: 0.45s;">
+        <div class="float" style="animation-delay: 3.2s;">
+          <div class="card tcard" style="--r: 8deg;">
+            <img src="tarot/six-of-swords-crop.jpg" alt="">
+            <div><small>Переезд</small><p class="serif">Остаться или&#160;уехать?</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slot" style="right: 84px; top: 60px;">
+      <div class="fly" style="--fx: 320px; --fy: -90px; --fr: 20deg; animation-delay: 0.25s;">
+        <div class="float" style="animation-delay: 2.8s;">
+          <div class="card tcard" style="--r: 9deg;">
+            <img src="tarot/eight-of-pentacles-crop.jpg" alt="">
+            <div><small>Работа</small><p class="serif">Пора менять работу?</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slot" style="right: 150px; top: 440px;">
+      <div class="fly" style="--fx: 300px; --fy: 130px; --fr: -16deg; animation-delay: 0.6s;">
+        <div class="float" style="animation-delay: 3.6s;">
+          <div class="card tcard" style="--r: -7deg;">
+            <img src="tarot/wheel-of-fortune-crop.jpg" alt="">
+            <div><small>Перемены</small><p class="serif">Что&#160;меня ждёт?</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<button class="replay" onclick="location.reload()">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fffdf9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>
+  Повторить анимацию
+</button>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вариант G: расклад на&#160;столе</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f7f1e7; color: #16213d; font-family: Manrope, 'Segoe UI', Arial, sans-serif; line-height: 1.5; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  h1, h3, p { margin: 0; }
+  .serif { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; }
+
+  .strip { display: flex; justify-content: center; align-items: center; gap: 10px; height: 40px; background: #16213d; color: #f7f1e7; font-size: 14px; font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 999px; background: #e8a13a; }
+  header { display: flex; align-items: center; justify-content: space-between; height: 80px; padding: 0 56px; background: #fffdf9; border-bottom: 1px solid #e6dccb; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo span { font-size: 21px; font-weight: 600; letter-spacing: 0.22em; }
+  nav { display: flex; gap: 34px; font-size: 15px; font-weight: 600; }
+  .head-right { display: flex; align-items: center; gap: 12px; }
+  .lang { display: inline-flex; align-items: center; height: 40px; padding: 0 14px; border: 1px solid #e6dccb; border-radius: 999px; font-size: 14px; font-weight: 700; }
+  .btn-dark { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: 999px; background: #16213d; color: #fffdf9; font-size: 15px; font-weight: 700; }
+  .menu { display: none; place-items: center; width: 44px; height: 44px; border-radius: 999px; background: #16213d; }
+
+  .hero { display: grid; grid-template-columns: 500px 1fr; gap: 40px; align-items: center; max-width: 1280px; min-height: 760px; margin: 0 auto; padding: 40px 56px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: #16213d; color: #fffdf9; font-size: 13px; font-weight: 700; }
+  .badge i { width: 8px; height: 8px; border-radius: 999px; background: #3fbf7f; }
+  h1 { margin-top: 24px; font-size: 48px; line-height: 1.03; font-weight: 600; }
+  .lead { margin-top: 24px; font-size: 19px; color: #3e4763; }
+  .row { display: flex; align-items: center; gap: 20px; margin-top: 34px; }
+  .cta { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 62px; padding: 0 32px; border-radius: 999px; background: #e8a13a; color: #16213d; font-size: 18px; font-weight: 800; box-shadow: 0 18px 36px -18px rgba(185, 120, 28, 0.9); }
+  .link { font-weight: 700; border-bottom: 2px solid #16213d; padding-bottom: 2px; }
+  .proof { margin-top: 34px; font-size: 14px; color: #676d80; }
+  .proof b { color: #16213d; }
+  .lead + .lead { margin-top: 10px; font-size: 17px; }
+  .note { margin-top: 16px; font-size: 15px; font-weight: 800; color: #9a5f10; }
+  .facts { margin-top: 22px; font-size: 14px; font-weight: 700; color: #3e4763; }
+  .sep { margin: 0 6px; color: #e8a13a; }
+  .stars { color: #d9901f; letter-spacing: 1px; }
+
+  .table { --cw: 150px; position: relative; height: 660px; overflow: hidden; border-radius: 36px; background: radial-gradient(ellipse 80% 70% at 50% 60%, #23335c 0%, #16213d 70%); perspective: 1400px; }
+  .table::before { content: ''; position: absolute; left: 50%; top: 58%; width: 560px; height: 560px; transform: translate(-50%, -50%); border-radius: 999px; border: 1.5px solid rgba(232, 161, 58, 0.25); }
+  .table::after { content: ''; position: absolute; left: 50%; top: 58%; width: 420px; height: 420px; transform: translate(-50%, -50%); border-radius: 999px; background: radial-gradient(circle, rgba(232, 161, 58, 0.18) 0%, rgba(232, 161, 58, 0) 70%); }
+  .question { position: absolute; left: 0; right: 0; top: 30px; z-index: 30; text-align: center; color: #fffdf9; transition: opacity 0.6s; }
+  .question small { display: block; font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #e8a13a; }
+  .question p { margin-top: 4px; font-size: 26px; }
+  .hide { opacity: 0; }
+
+  .card { position: absolute; left: 0; top: 0; width: var(--cw); transform-style: preserve-3d; transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+  .inner { position: relative; transform-style: preserve-3d; transition: transform 0.9s cubic-bezier(0.45, 0, 0.25, 1); }
+  .card.open .inner { transform: rotateY(180deg); }
+  .back, .face { border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .back { position: relative; padding: 7px; background: #e8a13a; box-shadow: 0 18px 30px -16px rgba(0, 0, 0, 0.6); }
+  .back div { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; aspect-ratio: 572 / 867; border: 1.5px solid rgba(22, 33, 61, 0.55); border-radius: 7px; }
+  .back span { font-family: 'Playfair Display', Georgia, serif; font-size: 11px; letter-spacing: 0.22em; color: #16213d; }
+  .face { position: absolute; inset: 0; padding: 7px; background: #fffdf9; transform: rotateY(180deg); box-shadow: 0 30px 50px -24px rgba(0, 0, 0, 0.7); }
+  .face img { display: block; width: 100%; height: auto; border-radius: 7px; outline: 1.5px solid #16213d; outline-offset: -1px; }
+
+  .slot-label { position: absolute; z-index: 30; width: 160px; margin-left: -80px; text-align: center; color: #c9cfdd; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; transition: opacity 0.6s; }
+
+  @media (max-width: 1023px) {
+    .hero > div:first-child { max-width: 620px; margin: 0 auto; }
+    .strip { font-size: 12px; height: 36px; }
+    header { height: 64px; padding: 0 16px; }
+    .logo span { font-size: 17px; }
+    nav, .btn-dark { display: none; }
+    .lang { height: 44px; }
+    .menu { display: grid; }
+    .hero { grid-template-columns: 1fr; gap: 24px; min-height: 0; padding: 26px 16px 28px; text-align: center; }
+    h1 { margin-top: 16px; font-size: 32px; line-height: 1.1; }
+    .lead { margin-top: 12px; font-size: 16px; }
+    .row { flex-direction: column; gap: 14px; margin-top: 22px; }
+    .cta { width: 100%; height: 58px; font-size: 17px; }
+    .proof { margin-top: 14px; }
+    .table { --cw: 96px; height: 430px; border-radius: 26px; }
+    .table::before { width: 330px; height: 330px; }
+    .table::after { width: 260px; height: 260px; }
+    .question { top: 20px; }
+    .question p { font-size: 20px; }
+    .slot-label { font-size: 10px; width: 110px; margin-left: -55px; }
+  }
+  @media (min-width: 700px) and (max-width: 1023px) {
+    h1 { font-size: 44px; }
+    .table { --cw: 132px; height: 580px; }
+    .table::before { width: 480px; height: 480px; }
+    .table::after { width: 380px; height: 380px; }
+    .slot-label { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <svg width="34" height="34" viewBox="0 0 32 32" fill="none" stroke="#16213d" stroke-width="1.8" stroke-linecap="round"><path d="M7 26V15a9 9 0 0 1 18 0v11"/><path d="M4 26h24"/><path d="M11.5 26a4.5 4.5 0 0 1 9 0" stroke="#e8a13a"/><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5" stroke="#e8a13a"/></svg>
+      <span class="serif">ORADEYA</span>
+    </div>
+    <nav><a href="#">Консультанты</a><a href="#">Направления</a><a href="#">Как&#160;это работает</a><a href="#">Отзывы</a><a href="#">Вопросы</a></nav>
+    <div class="head-right">
+      <span class="lang">EN</span>
+      <a class="btn-dark" href="#">Выбрать консультанта</a>
+      <span class="menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fffdf9" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="badge"><i></i>Консультанты онлайн</span>
+      <h1 class="serif">Иногда полезно посмотреть на&#160;ситуацию с&#160;другой стороны</h1>
+      <p class="lead">Когда мысли ходят по&#160;кругу, разговор с&#160;консультантом может помочь заметить то, что&#160;раньше ускользало из&#160;внимания.</p>
+      <p class="lead">Онлайн-консультации по&#160;таро и&#160;нумерологии: спокойно, лично и&#160;в&#160;удобном для&#160;вас темпе.</p>
+      <p class="note">Первые 3 минуты бесплатно для&#160;новых клиентов.</p>
+      <div class="row">
+        <a class="cta" href="#">Выбрать консультанта
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16213d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="facts">Чат <span class="sep">•</span> Без&#160;подписки <span class="sep">•</span> Оплата через Stripe</p>
+    </div>
+
+    <div class="table" id="table">
+      <div class="question hide" id="question"><small>Расклад на&#160;вопрос</small><p class="serif" id="question-text"></p></div>
+    </div>
+  </section>
+
+<script>
+  const rounds = [
+    { question: 'Пора менять работу?', cards: ['eight-of-pentacles', 'magician', 'wheel-of-fortune'] },
+    { question: 'Он тот самый?', cards: ['two-of-cups', 'hermit', 'six-of-swords'] },
+  ]
+  const labels = ['Ситуация', 'Совет', 'Итог']
+  const table = document.getElementById('table')
+  const question = document.getElementById('question')
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+  const backHtml = '<div class="back"><div><svg width="38" height="38" viewBox="0 0 32 32" fill="none" stroke="#16213d" stroke-width="1.4" stroke-linecap="round"><path d="M7 26V15a9 9 0 0 1 18 0v11"/><path d="M4 26h24"/><path d="M11.5 26a4.5 4.5 0 0 1 9 0"/><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5"/></svg><span>ORADEYA</span></div></div>'
+
+  let deck = rounds.flatMap((round) => round.cards).map((img) => {
+    const el = document.createElement('div')
+    el.className = 'card'
+    el.innerHTML = '<div class="inner">' + backHtml + '<div class="face"><img src="tarot/' + img + '-crop.jpg" alt=""></div></div>'
+    table.appendChild(el)
+    return el
+  })
+  const slotLabels = labels.map((text) => {
+    const el = document.createElement('div')
+    el.className = 'slot-label hide'
+    el.textContent = text
+    table.appendChild(el)
+    return el
+  })
+
+  function geometry() {
+    const w = table.clientWidth
+    const h = table.clientHeight
+    const cw = deck[0].offsetWidth
+    const ch = deck[0].offsetHeight
+    const gap = Math.min(w / 3.3, cw * 1.35)
+    return {
+      cw, ch,
+      deck: { x: w / 2 - cw / 2, y: h - ch - h * 0.08 },
+      slots: [-1, 0, 1].map((k) => ({ x: w / 2 - cw / 2 + k * gap, y: h * 0.2 + Math.abs(k) * 10 })),
+    }
+  }
+  const place = (el, x, y, rot = 0, z = 0) => { el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px) rotate(' + rot + 'deg)' }
+
+  function stack(g, instant) {
+    deck.forEach((el, i) => {
+      if (instant) el.style.transition = 'none'
+      el.style.zIndex = String(20 - i)
+      place(el, g.deck.x - i * 1.5, g.deck.y + i * 1.5)
+      if (instant) { el.offsetHeight; el.style.transition = '' }
+    })
+  }
+
+  async function round(k) {
+    const g = geometry()
+    const data = rounds[k % rounds.length]
+    for (let t = 0; t < 2; t++) {
+      deck.forEach((el, i) => place(el, g.deck.x + (i % 2 ? 1 : -1) * g.cw * 0.62, g.deck.y - 6, (i % 2 ? 1 : -1) * 9))
+      await sleep(650)
+      deck = deck.filter((_, i) => i % 2 === 1).concat(deck.filter((_, i) => i % 2 === 0))
+      deck = rounds[k % rounds.length].cards.map((img) => deck.find((el) => el.querySelector('img').src.includes(img))).concat(deck.filter((el) => !rounds[k % rounds.length].cards.some((img) => el.querySelector('img').src.includes(img))))
+      stack(g)
+      await sleep(650)
+    }
+    document.getElementById('question-text').textContent = data.question
+    question.classList.remove('hide')
+    const dealt = deck.slice(0, 3)
+    for (let i = 0; i < 3; i++) {
+      dealt[i].style.zIndex = String(25 + i)
+      place(dealt[i], g.slots[i].x, g.slots[i].y, (i - 1) * 3)
+      await sleep(420)
+    }
+    await sleep(500)
+    slotLabels.forEach((el, i) => {
+      el.style.left = g.slots[i].x + g.cw / 2 + 'px'
+      el.style.top = g.slots[i].y + g.ch + 14 + 'px'
+      el.classList.remove('hide')
+    })
+    for (const el of dealt) {
+      el.classList.add('open')
+      await sleep(650)
+    }
+    await sleep(3600)
+    question.classList.add('hide')
+    slotLabels.forEach((el) => el.classList.add('hide'))
+    dealt.forEach((el) => el.classList.remove('open'))
+    await sleep(700)
+    deck = deck.slice(3).concat(dealt)
+    stack(g)
+    await sleep(1100)
+  }
+
+  async function loop() {
+    stack(geometry(), true)
+    await sleep(600)
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const g = geometry()
+      deck.slice(0, 3).forEach((el, i) => { el.style.transition = 'none'; place(el, g.slots[i].x, g.slots[i].y); el.classList.add('open') })
+      document.getElementById('question-text').textContent = rounds[0].question
+      question.classList.remove('hide')
+      return
+    }
+    for (let k = 0; ; k++) await round(k)
+  }
+  window.addEventListener('load', loop)
+</script>
+</body>
+</html>

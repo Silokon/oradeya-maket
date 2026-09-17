@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap">
+  <style>
+    body { margin: 0; background: #0f1a33; }
+    * { box-sizing: border-box; }
+    a { color: #fffdf9; text-decoration: none; } a:hover { color: #f3c16f; }
+    h1, p { margin: 0; }
+    .serif { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 760px; position: relative; overflow: hidden; font-family: Manrope, 'Segoe UI', Arial, sans-serif; color: #fffdf9;">
+  <img src="hero.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% center; display: block;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15, 26, 51, 0.1) 0%, rgba(15, 26, 51, 0.55) 48%, rgba(15, 26, 51, 0.92) 70%);"></div>
+
+  <header style="position: relative; display: flex; align-items: center; justify-content: space-between; height: 84px; padding: 0 56px; background: rgba(15, 26, 51, 0.88);">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <svg width="36" height="36" viewBox="0 0 32 32" fill="none" stroke="#fffdf9" stroke-width="1.8" stroke-linecap="round"><path d="M7 26V15a9 9 0 0 1 18 0v11"></path><path d="M4 26h24"></path><path d="M11.5 26a4.5 4.5 0 0 1 9 0" stroke="#e8a13a"></path><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5" stroke="#e8a13a"></path></svg>
+      <span class="serif" style="font-size: 21px; font-weight: 600; letter-spacing: 0.22em; color: #fffdf9;">ORADEYA</span>
+    </div>
+    <nav style="display: flex; gap: 32px; font-size: 15px; font-weight: 600;">
+      <a href="#">Консультанты</a><a href="#">Направления</a><a href="#">Как&#160;это работает</a><a href="#">Отзывы</a><a href="#">Вопросы</a>
+    </nav>
+    <span style="display: inline-flex; align-items: center; height: 40px; padding: 0 14px; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 999px; font-size: 14px; font-weight: 700;">EN</span>
+  </header>
+
+  <div style="position: absolute; left: 680px; right: 56px; top: 118px;">
+    <p style="font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #f3c16f;">Таро и&#160;нумерология онлайн</p>
+    <h1 class="serif" style="margin-top: 16px; font-size: 50px; line-height: 1.08; font-weight: 600;">Иногда полезно посмотреть на&#160;ситуацию с&#160;другой стороны</h1>
+    <p style="margin-top: 20px; font-size: 17px; color: #dfe3ec;">Когда мысли ходят по&#160;кругу, разговор с&#160;консультантом может помочь заметить то, что&#160;раньше ускользало из&#160;внимания.</p>
+    <p style="margin-top: 10px; font-size: 16px; color: #dfe3ec;">Онлайн-консультации по&#160;таро и&#160;нумерологии: спокойно, лично и&#160;в&#160;удобном для&#160;вас темпе.</p>
+    <p style="margin-top: 14px; font-size: 15px; font-weight: 800; color: #f3c16f;">Первые 3 минуты бесплатно для&#160;новых клиентов.</p>
+    <a href="#" style="display: inline-flex; align-items: center; height: 62px; margin-top: 24px; padding: 0 34px; border-radius: 999px; background: #e8a13a; color: #16213d; font-size: 18px; font-weight: 800;">Выбрать консультанта</a>
+    <p style="margin-top: 20px; font-size: 14px; font-weight: 700; color: #dfe3ec;">Чат <span style="margin: 0 6px; color: #e8a13a;">•</span> Без&#160;подписки <span style="margin: 0 6px; color: #e8a13a;">•</span> Оплата через Stripe</p>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вариант F: карусель карт</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f7f1e7; color: #16213d; font-family: Manrope, 'Segoe UI', Arial, sans-serif; line-height: 1.5; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  h1, h3, p { margin: 0; }
+  .serif { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; }
+
+  .strip { display: flex; justify-content: center; align-items: center; gap: 10px; height: 40px; background: #16213d; color: #f7f1e7; font-size: 14px; font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 999px; background: #e8a13a; }
+  header { display: flex; align-items: center; justify-content: space-between; height: 80px; padding: 0 56px; background: #fffdf9; border-bottom: 1px solid #e6dccb; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo span { font-size: 21px; font-weight: 600; letter-spacing: 0.22em; }
+  nav { display: flex; gap: 34px; font-size: 15px; font-weight: 600; }
+  .head-right { display: flex; align-items: center; gap: 12px; }
+  .lang { display: inline-flex; align-items: center; height: 40px; padding: 0 14px; border: 1px solid #e6dccb; border-radius: 999px; font-size: 14px; font-weight: 700; }
+  .btn-dark { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: 999px; background: #16213d; color: #fffdf9; font-size: 15px; font-weight: 700; }
+  .menu { display: none; place-items: center; width: 44px; height: 44px; border-radius: 999px; background: #16213d; }
+
+  .hero { display: grid; grid-template-columns: 520px 1fr; align-items: center; max-width: 1280px; min-height: 740px; margin: 0 auto; padding: 0 56px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: #16213d; color: #fffdf9; font-size: 13px; font-weight: 700; }
+  .badge i { width: 8px; height: 8px; border-radius: 999px; background: #3fbf7f; }
+  h1 { margin-top: 24px; font-size: 50px; line-height: 1.03; font-weight: 600; }
+  .lead { margin-top: 24px; font-size: 19px; color: #3e4763; }
+  .row { display: flex; align-items: center; gap: 20px; margin-top: 34px; }
+  .cta { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 62px; padding: 0 32px; border-radius: 999px; background: #e8a13a; color: #16213d; font-size: 18px; font-weight: 800; box-shadow: 0 18px 36px -18px rgba(185, 120, 28, 0.9); }
+  .link { font-weight: 700; border-bottom: 2px solid #16213d; padding-bottom: 2px; }
+  .proof { margin-top: 34px; font-size: 14px; color: #676d80; }
+  .proof b { color: #16213d; }
+  .lead + .lead { margin-top: 10px; font-size: 17px; }
+  .note { margin-top: 16px; font-size: 15px; font-weight: 800; color: #9a5f10; }
+  .facts { margin-top: 22px; font-size: 14px; font-weight: 700; color: #3e4763; }
+  .sep { margin: 0 6px; color: #e8a13a; }
+  .stars { color: #d9901f; letter-spacing: 1px; }
+
+  .stage { --w: 188px; --r: 270px; position: relative; height: 640px; }
+  .sun { position: absolute; left: 50%; top: 52%; width: 560px; height: 560px; transform: translate(-50%, -50%); border-radius: 999px; background: radial-gradient(circle, #f3c77a 0%, #eeb65a 38%, rgba(238, 182, 90, 0) 70%); opacity: 0.55; }
+  .scene { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 50% 40%; }
+  .tilt { position: absolute; left: 50%; top: 44%; width: 0; height: 0; transform-style: preserve-3d; transform: rotateX(-7deg); }
+  .ring { position: absolute; transform-style: preserve-3d; transform: translateZ(calc(var(--r) * -1)) rotateY(var(--a, 0deg)); transition: transform 1.7s cubic-bezier(0.65, 0, 0.35, 1); }
+  .card { position: absolute; left: calc(var(--w) / -2); top: calc(var(--w) * -0.78); width: var(--w); transform-style: preserve-3d; transform: rotateY(calc(var(--i) * 60deg)) translateZ(var(--r)); cursor: pointer; }
+  .face, .back { width: 100%; border-radius: 14px; backface-visibility: hidden; -webkit-backface-visibility: hidden; transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 1.2s; }
+  .face { position: relative; padding: 8px; background: #fffdf9; box-shadow: 0 26px 50px -30px rgba(22, 33, 61, 0.6); }
+  .face img { display: block; width: 100%; height: auto; border-radius: 8px; outline: 1.5px solid #16213d; outline-offset: -1px; }
+  .back { position: absolute; inset: 0; display: grid; place-items: center; padding: 10px; background: #16213d; transform: rotateY(180deg); }
+  .back div { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 100%; height: 100%; border: 1.5px solid rgba(232, 161, 58, 0.7); border-radius: 8px; color: #e8a13a; }
+  .back span { font-family: 'Playfair Display', Georgia, serif; font-size: 12px; letter-spacing: 0.24em; }
+  .card.front .face { transform: translateZ(40px) scale(1.06); box-shadow: 0 40px 70px -30px rgba(22, 33, 61, 0.75); }
+  .floor { position: absolute; left: 50%; top: 80%; width: 520px; height: 70px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse, rgba(22, 33, 61, 0.22) 0%, rgba(22, 33, 61, 0) 70%); }
+
+  .caption { position: absolute; left: 50%; bottom: 18px; display: flex; align-items: center; gap: 14px; transform: translateX(-50%); }
+  .arrow { display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 999px; background: #fffdf9; color: #16213d; cursor: pointer; box-shadow: 0 10px 24px -14px rgba(22, 33, 61, 0.6); }
+  .arrow:hover { background: #16213d; color: #fffdf9; }
+  .chip { min-width: 250px; padding: 10px 22px 12px; border-radius: 999px; background: #16213d; color: #fffdf9; text-align: center; transition: opacity 0.4s; }
+  .chip small { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #e8a13a; }
+  .chip p { font-size: 19px; line-height: 1.2; white-space: nowrap; }
+  .chip.fade { opacity: 0; }
+
+  @media (max-width: 1023px) {
+    .hero > div:first-child { max-width: 620px; margin: 0 auto; }
+    .strip { font-size: 12px; height: 36px; }
+    header { height: 64px; padding: 0 16px; }
+    .logo span { font-size: 17px; }
+    nav, .btn-dark { display: none; }
+    .lang { height: 44px; }
+    .menu { display: grid; }
+    .hero { grid-template-columns: 1fr; min-height: 0; padding: 26px 16px 20px; text-align: center; }
+    h1 { margin-top: 16px; font-size: 32px; line-height: 1.1; }
+    .lead { margin-top: 12px; font-size: 16px; }
+    .row { flex-direction: column; gap: 14px; margin-top: 22px; }
+    .cta { width: 100%; height: 58px; font-size: 17px; }
+    .proof { margin-top: 14px; }
+    .stage { --w: 118px; --r: 150px; height: 420px; margin-top: 6px; }
+    .sun { width: 340px; height: 340px; }
+    .floor { width: 320px; top: 76%; }
+    .chip { min-width: 0; padding: 8px 16px 9px; }
+    .chip p { font-size: 16px; }
+    .arrow { width: 44px; height: 44px; }
+    .caption { bottom: 6px; gap: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ring, .face, .back, .chip { transition: none; } }
+  @media (min-width: 700px) and (max-width: 1023px) {
+    h1 { font-size: 44px; }
+    .stage { --w: 170px; --r: 230px; height: 580px; }
+    .sun { width: 480px; height: 480px; }
+    .floor { width: 460px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <svg width="34" height="34" viewBox="0 0 32 32" fill="none" stroke="#16213d" stroke-width="1.8" stroke-linecap="round"><path d="M7 26V15a9 9 0 0 1 18 0v11"/><path d="M4 26h24"/><path d="M11.5 26a4.5 4.5 0 0 1 9 0" stroke="#e8a13a"/><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5" stroke="#e8a13a"/></svg>
+      <span class="serif">ORADEYA</span>
+    </div>
+    <nav><a href="#">Консультанты</a><a href="#">Направления</a><a href="#">Как&#160;это работает</a><a href="#">Отзывы</a><a href="#">Вопросы</a></nav>
+    <div class="head-right">
+      <span class="lang">EN</span>
+      <a class="btn-dark" href="#">Выбрать консультанта</a>
+      <span class="menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fffdf9" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="badge"><i></i>Консультанты онлайн</span>
+      <h1 class="serif">Иногда полезно посмотреть на&#160;ситуацию с&#160;другой стороны</h1>
+      <p class="lead">Когда мысли ходят по&#160;кругу, разговор с&#160;консультантом может помочь заметить то, что&#160;раньше ускользало из&#160;внимания.</p>
+      <p class="lead">Онлайн-консультации по&#160;таро и&#160;нумерологии: спокойно, лично и&#160;в&#160;удобном для&#160;вас темпе.</p>
+      <p class="note">Первые 3 минуты бесплатно для&#160;новых клиентов.</p>
+      <div class="row">
+        <a class="cta" href="#">Выбрать консультанта
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16213d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="facts">Чат <span class="sep">•</span> Без&#160;подписки <span class="sep">•</span> Оплата через Stripe</p>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="sun"></div>
+      <div class="floor"></div>
+      <div class="scene"><div class="tilt"><div class="ring" id="ring"></div></div></div>
+      <div class="caption">
+        <button class="arrow" id="prev" type="button" aria-label="Предыдущая карта"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="chip" id="chip"><small id="chip-label"></small><p class="serif" id="chip-text"></p></div>
+        <button class="arrow" id="next" type="button" aria-label="Следующая карта"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+<script>
+  const cards = [
+    { img: 'two-of-cups', label: 'Отношения', text: 'Он тот самый?' },
+    { img: 'eight-of-pentacles', label: 'Работа', text: 'Пора менять работу?' },
+    { img: 'six-of-swords', label: 'Переезд', text: 'Остаться или уехать?' },
+    { img: 'magician', label: 'Своё дело', text: 'Стоит ли начинать?' },
+    { img: 'hermit', label: 'Выбор', text: 'Какой путь выбрать?' },
+    { img: 'wheel-of-fortune', label: 'Перемены', text: 'Что меня ждёт?' },
+  ]
+  const ring = document.getElementById('ring')
+  const back = '<div class="back"><div><svg width="44" height="44" viewBox="0 0 32 32" fill="none" stroke="#e8a13a" stroke-width="1.4" stroke-linecap="round"><path d="M7 26V15a9 9 0 0 1 18 0v11"/><path d="M4 26h24"/><path d="M11.5 26a4.5 4.5 0 0 1 9 0"/><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5"/></svg><span>ORADEYA</span></div></div>'
+  const els = cards.map((card, i) => {
+    const el = document.createElement('div')
+    el.className = 'card'
+    el.style.setProperty('--i', i)
+    el.innerHTML = '<div class="face"><img src="tarot/' + card.img + '-crop.jpg" alt=""></div>' + back
+    el.addEventListener('click', () => go(i))
+    ring.appendChild(el)
+    return el
+  })
+
+  let step = 0
+  const chip = document.getElementById('chip')
+  function render() {
+    ring.style.setProperty('--a', step * -60 + 'deg')
+    const index = ((step % 6) + 6) % 6
+    els.forEach((el, i) => el.classList.toggle('front', i === index))
+    chip.classList.add('fade')
+    setTimeout(() => {
+      document.getElementById('chip-label').textContent = cards[index].label
+      document.getElementById('chip-text').textContent = cards[index].text
+      chip.classList.remove('fade')
+    }, 650)
+  }
+  function go(i) {
+    const index = ((step % 6) + 6) % 6
+    let diff = i - index
+    if (diff > 3) diff -= 6
+    if (diff < -3) diff += 6
+    step += diff
+    render()
+    restart()
+  }
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
+  let timer = null
+  function restart() {
+    clearInterval(timer)
+    if (!reduced) timer = setInterval(() => { step += 1; render() }, 3400)
+  }
+  document.getElementById('next').addEventListener('click', () => { step += 1; render(); restart() })
+  document.getElementById('prev').addEventListener('click', () => { step -= 1; render(); restart() })
+  const stage = document.getElementById('stage')
+  stage.addEventListener('mouseenter', () => clearInterval(timer))
+  stage.addEventListener('mouseleave', restart)
+
+  render()
+  restart()
+</script>
+</body>
+</html>

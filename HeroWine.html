@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap">
+  <style>
+    body { margin: 0; background: #f6eee4; }
+    * { box-sizing: border-box; }
+    a { color: #2a1418; text-decoration: none; } a:hover { color: #7b2335; }
+    h1, p { margin: 0; }
+    .serif { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 760px; position: relative; overflow: hidden; background: #f6eee4; font-family: Manrope, 'Segoe UI', Arial, sans-serif; color: #2a1418;">
+  <header style="display: flex; align-items: center; justify-content: space-between; height: 84px; padding: 0 56px; border-bottom: 1px solid #e5d6c6;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <svg width="36" height="36" viewBox="0 0 32 32" fill="none" stroke="#7b2335" stroke-width="1.8" stroke-linecap="round"><path d="M7 26V15a9 9 0 0 1 18 0v11"></path><path d="M4 26h24"></path><path d="M11.5 26a4.5 4.5 0 0 1 9 0"></path><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5"></path></svg>
+      <span class="serif" style="font-size: 21px; font-weight: 600; letter-spacing: 0.22em;">ORADEYA</span>
+    </div>
+    <nav style="display: flex; gap: 32px; font-size: 15px; font-weight: 600;">
+      <a href="#">Консультанты</a><a href="#">Направления</a><a href="#">Как&#160;это работает</a><a href="#">Отзывы</a><a href="#">Вопросы</a>
+    </nav>
+    <a href="#" style="display: inline-flex; align-items: center; height: 44px; padding: 0 22px; border-radius: 999px; background: #7b2335; color: #fff8f0; font-weight: 700;">Выбрать консультанта</a>
+  </header>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 40px; align-items: center; padding: 0 56px; height: 676px;">
+    <div>
+      <h1 class="serif" style="font-size: 60px; line-height: 1.05; font-weight: 600; color: #7b2335;">Иногда полезно посмотреть на&#160;ситуацию с&#160;другой стороны</h1>
+      <p style="margin-top: 22px; max-width: 560px; font-size: 18px; color: #5a4146;">Когда мысли ходят по&#160;кругу, разговор с&#160;консультантом может помочь заметить то, что&#160;раньше ускользало из&#160;внимания.</p>
+      <p style="margin-top: 10px; max-width: 560px; font-size: 17px; color: #5a4146;">Онлайн-консультации по&#160;таро и&#160;нумерологии: спокойно, лично и&#160;в&#160;удобном для&#160;вас темпе.</p>
+      <p style="margin-top: 14px; font-size: 15px; font-weight: 800; color: #7b2335;">Первые 3 минуты бесплатно для&#160;новых клиентов.</p>
+      <div style="display: flex; align-items: center; gap: 22px; margin-top: 26px;">
+        <a href="#" style="display: inline-flex; align-items: center; height: 62px; padding: 0 34px; border-radius: 999px; background: #7b2335; color: #fff8f0; font-size: 18px; font-weight: 800;">Выбрать консультанта</a>
+        <p style="font-size: 14px; font-weight: 700; color: #5a4146;">Чат <span style="margin: 0 5px; color: #c7862a;">•</span> Без&#160;подписки <span style="margin: 0 5px; color: #c7862a;">•</span> Оплата через Stripe</p>
+      </div>
+    </div>
+
+    <div style="position: relative; height: 600px;">
+      <div style="position: absolute; left: 70px; top: 20px; width: 380px; height: 560px; border-radius: 190px 190px 24px 24px; overflow: hidden;">
+        <img src="calm.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: center 55%; display: block;">
+      </div>
+      <p class="serif" style="position: absolute; left: 0; top: 110px; padding: 14px 18px; border-radius: 18px 18px 18px 4px; background: #7b2335; color: #fff8f0; font-size: 20px; line-height: 1.25; box-shadow: 0 24px 40px -24px rgba(42, 20, 24, 0.6);">Остаться или&#160;уехать?</p>
+      <p class="serif" style="position: absolute; right: 0; top: 270px; padding: 14px 18px; border-radius: 18px 18px 4px 18px; background: #fff8f0; font-size: 20px; line-height: 1.25; box-shadow: 0 24px 40px -24px rgba(42, 20, 24, 0.6);">Он правда тот&#160;самый?</p>
+      <p class="serif" style="position: absolute; left: 20px; bottom: 60px; padding: 14px 18px; border-radius: 18px 18px 18px 4px; background: #e8a13a; font-size: 20px; line-height: 1.25; box-shadow: 0 24px 40px -24px rgba(42, 20, 24, 0.6);">Пора менять работу?</p>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

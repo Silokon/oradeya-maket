@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ORADEYA: варианты главной</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Playfair+Display:wght@600&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; display: flex; flex-direction: column; background: #e9e1d3; color: #16213d; font-family: Manrope, 'Segoe UI', Arial, sans-serif; }
+
+  .bar { display: flex; align-items: center; gap: 16px; padding: 10px 16px; background: #16213d; color: #fffdf9; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 10px; margin-right: 8px; font-family: 'Playfair Display', Georgia, serif; font-size: 17px; letter-spacing: 0.2em; white-space: nowrap; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+  .tab { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; min-height: 44px; padding: 6px 14px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; background: transparent; color: #fffdf9; font: inherit; text-align: left; cursor: pointer; }
+  .tab b { font-size: 14px; font-weight: 800; }
+  .tab span { font-size: 11px; color: #c9cfdd; }
+  .tab:hover { border-color: #e8a13a; }
+  .tab[aria-selected="true"] { background: #e8a13a; border-color: #e8a13a; color: #16213d; }
+  .tab[aria-selected="true"] span { color: #2a3350; }
+  .tools { display: flex; gap: 6px; }
+  .tool { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; background: transparent; color: #fffdf9; font: 700 13px Manrope, sans-serif; cursor: pointer; text-decoration: none; white-space: nowrap; }
+  .tool:hover { border-color: #e8a13a; }
+
+  .note { padding: 8px 16px; background: #fffdf9; border-bottom: 1px solid #e6dccb; font-size: 14px; color: #3e4763; }
+  .note b { color: #16213d; }
+
+  .stage { position: relative; flex: 1; overflow: auto; }
+  .wrap { margin: 0 auto; overflow: hidden; }
+  .desk { width: 1280px; transform-origin: top left; }
+  .desk iframe { display: block; width: 1280px; border: 0; background: #f7f1e7; }
+  .phone { width: 414px; margin: 24px auto 40px; padding: 12px; border-radius: 48px; background: #0b1228; box-shadow: 0 40px 80px -40px rgba(11, 18, 40, 0.7); }
+  .phone iframe { display: block; width: 390px; height: 800px; border: 0; border-radius: 36px; background: #f7f1e7; }
+
+  @media (max-width: 760px) {
+    .bar { gap: 8px; padding: 8px 12px; }
+    .brand { font-size: 15px; }
+    .tabs { order: 3; flex: 0 0 100%; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 2px; }
+    .tab { flex-shrink: 0; }
+    .tools { margin-left: auto; }
+    .tool { height: 40px; padding: 0 10px; font-size: 12px; }
+    #open { display: none; }
+    .note { font-size: 13px; }
+    .phone { width: auto; margin: 0; padding: 0; border-radius: 0; background: none; box-shadow: none; }
+    .phone iframe { width: 100%; height: calc(100vh - 150px); border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#fffdf9" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M7 26V15a9 9 0 0 1 18 0v11"/><path d="M4 26h24"/><path d="M11.5 26a4.5 4.5 0 0 1 9 0" stroke="#e8a13a"/><path d="M16 18.5v-2.2M11.3 20.4l-1.5-1.5M20.7 20.4l1.5-1.5" stroke="#e8a13a"/></svg>
+    ORADEYA
+  </div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="tools">
+    <button class="tool" id="replay" type="button">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>
+      Повторить анимацию
+    </button>
+    <a class="tool" id="open" target="_blank" rel="noopener">Открыть отдельно</a>
+  </div>
+</div>
+<p class="note" id="note"></p>
+<div class="stage" id="stage"></div>
+
+<script>
+  const variants = [
+    { id: 'a', name: 'A', label: 'Главная целиком', file: 'Main.html', phone: 'Mobile.html', note: '<b>Вариант A.</b> Вся главная страница: первый экран, консультанты, «Начать просто», подход ORADEYA, «Почему ORADEYA», направления, отзывы и частые вопросы.' },
+    { id: 'b', name: 'B', label: 'Фото на весь экран', file: 'HeroPhoto.html', note: '<b>Вариант B.</b> Только первый экран: большое фото на всю ширину.' },
+    { id: 'c', name: 'C', label: 'Винный цвет', file: 'HeroWine.html', note: '<b>Вариант C.</b> Только первый экран: винный акцент и вопросы вокруг фото.' },
+    { id: 'd', name: 'D', label: 'Карты прилетают', file: 'HeroCards.html', phone: 'HeroCardsMobile.html', note: '<b>Вариант D.</b> Первый экран: карты таро плавно прилетают вокруг заголовка.' },
+    { id: 'e', name: 'E', label: 'Расклад', file: 'HeroSpread.html', note: '<b>Вариант E.</b> Первый экран: карты ложатся на стол, средняя переворачивается и показывает консультанта.' },
+    { id: 'f', name: 'F', label: 'Карусель карт', file: 'HeroCarousel.html', phone: 'HeroCarousel.html', note: '<b>Вариант F.</b> Первый экран: карусель карт таро плавно поворачивается, подпись меняется. Стрелками или кликом по карте можно листать.' },
+    { id: 'g', name: 'G', label: 'Расклад на столе', file: 'HeroDeal.html', phone: 'HeroDeal.html', note: '<b>Вариант G.</b> Первый экран: колода тасуется, три карты раскладываются и открываются, потом расклад на новый вопрос.' },
+  ]
+  const tabs = document.getElementById('tabs')
+  const stage = document.getElementById('stage')
+  const note = document.getElementById('note')
+  const open = document.getElementById('open')
+
+  const items = []
+  for (const v of variants) {
+    items.push({ key: v.id, v, device: 'desk', title: v.name, sub: v.label })
+    if (v.phone) items.push({ key: v.id + '-phone', v, device: 'phone', title: v.name + ' телефон', sub: v.label })
+  }
+  for (const item of items) {
+    const b = document.createElement('button')
+    b.className = 'tab'
+    b.type = 'button'
+    b.setAttribute('role', 'tab')
+    b.dataset.key = item.key
+    b.innerHTML = '<b>' + item.title + '</b><span>' + item.sub + '</span>'
+    b.addEventListener('click', () => show(item.key))
+    tabs.appendChild(b)
+  }
+
+  function fit() {
+    const wrap = stage.querySelector('.wrap')
+    if (!wrap) return
+    const desk = wrap.firstChild
+    const scale = Math.min(1, stage.clientWidth / 1280)
+    desk.style.transform = 'scale(' + scale + ')'
+    const frame = desk.querySelector('iframe')
+    wrap.style.height = frame.offsetHeight * scale + 'px'
+    wrap.style.width = 1280 * scale + 'px'
+  }
+
+  function show(key) {
+    const item = items.find((i) => i.key === key) || items[0]
+    for (const b of tabs.children) b.setAttribute('aria-selected', String(b.dataset.key === item.key))
+    note.innerHTML = item.v.note + (item.device === 'phone' ? ' Версия для телефона.' : '')
+    const file = item.device === 'phone' ? item.v.phone : item.v.file
+    open.href = file
+    stage.innerHTML = ''
+    const frame = document.createElement('iframe')
+    frame.src = file
+    frame.title = 'Вариант ' + item.title
+    frame.addEventListener('load', () => {
+      try {
+        const style = frame.contentDocument.createElement('style')
+        style.textContent = '.replay{display:none!important}'
+        frame.contentDocument.head.appendChild(style)
+      } catch (e) {}
+    })
+    if (item.device === 'phone') {
+      const phone = document.createElement('div')
+      phone.className = 'phone'
+      phone.appendChild(frame)
+      stage.appendChild(phone)
+    } else {
+      const desk = document.createElement('div')
+      desk.className = 'desk'
+      frame.style.height = '900px'
+      frame.addEventListener('load', () => {
+        try {
+          const doc = frame.contentDocument
+          frame.style.height = Math.max(760, doc.documentElement.scrollHeight) + 'px'
+        } catch (e) {}
+        fit()
+      })
+      desk.appendChild(frame)
+      const wrap = document.createElement('div')
+      wrap.className = 'wrap'
+      wrap.appendChild(desk)
+      stage.appendChild(wrap)
+      fit()
+    }
+    stage.scrollTop = 0
+    history.replaceState(null, '', '#' + item.key)
+  }
+
+  document.getElementById('replay').addEventListener('click', () => {
+    const frame = stage.querySelector('iframe')
+    if (frame) frame.src = frame.src
+  })
+  window.addEventListener('resize', fit)
+  show(location.hash.slice(1) || 'f')
+</script>
+</body>
+</html>

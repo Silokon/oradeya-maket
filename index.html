@@ -71,11 +71,9 @@
   const variants = [
     { id: 'a', name: 'A', label: 'Фото в арке и чат', file: 'Main.html', phone: 'Mobile.html', note: '<b>Вариант A.</b> Вся главная страница: первый экран, консультанты, «Начать просто», подход ORADEYA, «Почему ORADEYA», направления, отзывы и частые вопросы.' },
     { id: 'b', name: 'B', label: 'Фото на весь экран', file: 'HeroPhoto.html', note: '<b>Вариант B.</b> Главная целиком, первый экран с большим фото на всю ширину.' },
-    { id: 'c', name: 'C', label: 'Винный цвет', file: 'HeroWine.html', note: '<b>Вариант C.</b> Главная целиком в винной гамме, на первом экране вопросы вокруг фото.' },
     { id: 'd', name: 'D', label: 'Карты прилетают', file: 'HeroCards.html', phone: 'HeroCardsMobile.html', note: '<b>Вариант D.</b> Главная целиком, на первом экране карты таро плавно прилетают вокруг заголовка.' },
     { id: 'e', name: 'E', label: 'Расклад', file: 'HeroSpread.html', note: '<b>Вариант E.</b> Главная целиком, на первом экране карты ложатся на стол, средняя переворачивается и показывает консультанта.' },
     { id: 'f', name: 'F', label: 'Карусель карт', file: 'HeroCarousel.html', phone: 'HeroCarousel.html', note: '<b>Вариант F.</b> Главная целиком, на первом экране карусель карт таро. Стрелками или кликом по карте можно листать.' },
-    { id: 'g', name: 'G', label: 'Расклад на столе', file: 'HeroDeal.html', phone: 'HeroDeal.html', note: '<b>Вариант G.</b> Главная целиком, на первом экране колода тасуется, три карты раскладываются и открываются.' },
     { id: 'h', name: 'H', label: 'Светлый сиреневый', file: 'Classic.html', phone: 'Classic.html', note: '<b>Вариант H.</b> Главная целиком в светлой сиреневой гамме: фото в арке и карточка чата на первом экране.' },
   ]
   const tabs = document.getElementById('tabs')
@@ -177,7 +175,7 @@
     if (frame) frame.src = frame.src
   })
   window.addEventListener('resize', fit)
-  show(location.hash.slice(1) || 'f')
+  show(location.hash.slice(1) || 'a')
 </script>
 </body>
 </html>

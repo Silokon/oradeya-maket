@@ -609,15 +609,10 @@ html[data-hero="stack"] .tarot-peek-bottom { z-index: 2; --peek-rotate: 6deg; an
   100% { opacity: 1; transform: translate(11%, -72%) rotate(-7deg); }
 }
 @media (max-width: 1199px) {
-  html[data-hero="stack"] .tarot-peek { width: 30%; animation: 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal both running peek-in, 9s ease-in-out 1.8s infinite normal none running peek-float; bottom: auto; right: auto; }
-  html[data-hero="stack"] .tarot-peek-left { --peek-rotate: -9deg; --peek-from: 40px; animation-delay: 0.5s, 2.2s; top: 8%; left: -7%; }
-  html[data-hero="stack"] .tarot-peek-right { --peek-rotate: 8deg; --peek-from: -40px; animation-delay: 0.8s, 2.6s; top: 38%; left: auto; right: -7%; }
-  html[data-hero="stack"] .tarot-peek-bottom { display: none; }
-}
-@media (max-width: 767px) {
-  html[data-hero="stack"] .tarot-peek { width: 28%; }
-  html[data-hero="stack"] .tarot-peek-left { top: 4%; left: -4%; }
-  html[data-hero="stack"] .tarot-peek-right { top: 46%; right: -4%; }
+  html[data-hero="stack"] .tarot-peek { width: 16.5%; animation: 1.4s cubic-bezier(0.33, 0, 0.18, 1) 0s 1 normal both running stack-in; inset: auto -4% 50% auto; }
+  html[data-hero="stack"] .tarot-peek-left { display: none; }
+  html[data-hero="stack"] .tarot-peek-right { --peek-rotate: 4deg; animation-delay: 0.5s; }
+  html[data-hero="stack"] .tarot-peek-bottom { --peek-rotate: -7deg; animation-delay: 0.75s; display: block; bottom: 52.5%; right: -1%; }
 }
 html[data-hero-mode="preview"]:not([data-hero="cards"]):not([data-hero="fly"]):not([data-hero="fan"]):not([data-hero="stack"]) .tarot-peek { display: none; }
 @media (max-width: 767px) {

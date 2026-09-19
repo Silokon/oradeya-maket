@@ -25,9 +25,23 @@
     })
 
     var blocks = document.querySelectorAll('.reveal')
+    // карты у первого экрана ждут, пока фото появится в экране: на телефоне до него ещё листать
+    var card = document.querySelector('.tarot-peek')
+    var photo = card ? card.parentElement : null
     if (!('IntersectionObserver' in window)) {
       blocks.forEach(function (el) { el.classList.add('is-visible') })
+      if (photo) photo.classList.add('cards-in')
       return
+    }
+    if (photo) {
+      var cardsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('cards-in')
+          cardsObserver.unobserve(entry.target)
+        })
+      }, { threshold: 0.3 })
+      cardsObserver.observe(photo)
     }
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

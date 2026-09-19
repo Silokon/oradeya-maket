@@ -563,18 +563,18 @@ h1 { font-weight: 700; }
   .tarot-peek-right { right: -7%; }
 }
 .tarot-peek-bottom { display: none; }
-html[data-hero="fly"] .tarot-peek, html[data-hero-fly] .tarot-peek { width: 38%; animation: 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal both running fly-in, 9s ease-in-out 2.6s infinite normal none running fly-float; }
-html[data-hero="fly"] .tarot-peek-bottom, html[data-hero-fly] .tarot-peek-bottom { z-index: 1; --peek-rotate: 6deg; --fly-x: 170px; --fly-y: 150px; width: 30%; animation-delay: 1.1s, 3.2s; display: block; inset: auto -19% 2% auto; }
-html[data-hero="fly"] .tarot-peek-left, html[data-hero-fly] .tarot-peek-left { --peek-rotate: -14deg; --fly-x: -260px; --fly-y: -120px; animation-delay: 0.4s, 2.6s; top: 2%; left: -18%; }
-html[data-hero="fly"] .tarot-peek-right, html[data-hero-fly] .tarot-peek-right { --peek-rotate: 12deg; --fly-x: 260px; --fly-y: 120px; animation-delay: 0.7s, 2.9s; top: 30%; right: -14%; }
+html[data-hero="fly"] .tarot-peek, html[data-hero-fly] .tarot-peek { width: 38%; animation: 3.4s cubic-bezier(0.33, 0, 0.18, 1) 0s 1 normal both running fly-in, 11s ease-in-out 3.8s infinite normal none running fly-float; }
+html[data-hero="fly"] .tarot-peek-bottom, html[data-hero-fly] .tarot-peek-bottom { z-index: 1; --peek-rotate: 6deg; --fly-x: 150px; --fly-y: 130px; width: 30%; animation-delay: 1s, 4.4s; display: block; inset: auto -19% 2% auto; }
+html[data-hero="fly"] .tarot-peek-left, html[data-hero-fly] .tarot-peek-left { --peek-rotate: -14deg; --fly-x: -230px; --fly-y: -105px; animation-delay: 0.4s, 3.8s; top: 2%; left: -18%; }
+html[data-hero="fly"] .tarot-peek-right, html[data-hero-fly] .tarot-peek-right { --peek-rotate: 12deg; --fly-x: 230px; --fly-y: 105px; animation-delay: 0.7s, 4.1s; top: 30%; right: -14%; }
 @keyframes fly-in { 
-  0% { opacity: 0; transform: translate(var(--fly-x), var(--fly-y)) rotate(calc(var(--peek-rotate) * 3)) scale(.9); }
-  30% { opacity: 1; }
+  0% { opacity: 0; transform: translate(var(--fly-x), var(--fly-y)) rotate(calc(var(--peek-rotate) * 1.8)) scale(.95); }
+  45% { opacity: 1; }
   100% { opacity: 1; transform: translate(0, 0) rotate(var(--peek-rotate)) scale(1); }
 }
 @keyframes fly-float { 
   0%, 100% { transform: translateY(0) rotate(var(--peek-rotate)); }
-  50% { transform: translateY(-9px) rotate(calc(var(--peek-rotate) + 1deg)); }
+  50% { transform: translateY(-7px) rotate(calc(var(--peek-rotate) + .6deg)); }
 }
 @media (max-width: 1199px) {
   html[data-hero="fly"] .tarot-peek-bottom, html[data-hero-fly] .tarot-peek-bottom { display: none; }

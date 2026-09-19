@@ -615,6 +615,59 @@ html[data-hero="stack"] .tarot-peek-bottom { z-index: 2; --peek-rotate: 6deg; an
   html[data-hero="stack"] .tarot-peek-bottom { --peek-rotate: -7deg; animation-delay: 0.75s; display: block; bottom: 52.5%; right: -1%; }
 }
 .cards-in .tarot-peek { --play: running; }
+.hero-sea-bg { display: none; }
+html[data-hero^="sea"] .hero-sea-bg { z-index: -1; background-color: var(--sea-ground); display: block; position: absolute; inset: 0px; overflow: hidden; }
+html[data-hero^="sea"] .hero-sea-bg::before { content: ""; background: var(--sea-photo) var(--sea-pos) / cover no-repeat; animation: 26s ease-in-out 0s infinite alternate none running sea-zoom; position: absolute; inset: 0px; }
+html[data-hero^="sea"] .hero-sea-bg::after { content: ""; background: var(--sea-veil); position: absolute; inset: 0px; }
+@keyframes sea-zoom { 
+  0% { transform: scale(1); }
+  100% { transform: scale(1.07); }
+}
+html[data-hero="sea1"], html[data-hero="sea4"], html[data-hero="sea6"] { --sea-photo: url(img/sea-light.jpg); --sea-pos: 70% 62%; --sea-ground: #fbf9f6; --sea-rgb: 251, 249, 246; --sea-veil: linear-gradient(90deg, #fbf9f6f0 0%, #fbf9f6cc 34%, #fbf9f62e 60%, #fbf9f600 76%); }
+html[data-hero="sea2"], html[data-hero="sea5"] { --sea-photo: url(img/sea-dusk.jpg); --sea-pos: 72% 50%; --sea-ground: #1a1430; --sea-rgb: 26, 20, 48; --sea-veil: linear-gradient(90deg, #1a1430db 0%, #1a14309e 40%, #1a14301f 72%, #1a14300d 100%); }
+html[data-hero="sea3"] { --sea-photo: url(img/sea-deep.jpg); --sea-pos: 60% 55%; --sea-ground: #0e1424; --sea-rgb: 14, 20, 36; --sea-veil: linear-gradient(90deg, #0e1424cc 0%, #0e142485 42%, #0e142414 74%, #0e142400 100%); }
+html[data-hero^="sea"] .hero-photo-col { display: none; }
+@media (min-width: 768px) {
+  html[data-hero^="sea"] .hero-section > .container-page { align-content: center; min-height: min(46rem, -72px + 100vh); }
+}
+html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy { color: rgb(255, 255, 255); }
+html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy p, html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy ul { color: rgba(255, 255, 255, 0.9); }
+html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy .text-muted { color: rgba(255, 255, 255, 0.78); }
+html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-badge { color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.35); }
+html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy .btn-primary { color: var(--color-accent-deep); background: rgb(255, 255, 255); }
+html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy .btn-ghost { color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.55); }
+html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy .bg-gold, html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy .text-gold { --color-gold: #e6c37a; }
+@media (min-width: 768px) {
+  html[data-hero="sea4"] .hero-sea-bg { border-radius: 2.25rem; inset: 1.5rem max(1.25rem, 50% - 37rem); box-shadow: rgba(60, 48, 89, 0.7) 0px 40px 80px -50px; }
+  html[data-hero="sea4"] .hero-section > .container-page { padding-inline: 3.5rem; }
+  html[data-hero="sea4"] .hero-photo-col { align-self: end; margin-bottom: 4rem; display: block; }
+  html[data-hero="sea4"] .hero-arch, html[data-hero="sea4"] .hero-online { visibility: hidden; }
+  html[data-hero="sea4"] .hero-photo-col { margin-inline: auto 0px; }
+  html[data-hero="sea4"] .hero-chat { bottom: -1.5rem; left: auto; right: -1rem; }
+}
+@media (max-width: 767px) {
+  html[data-hero^="sea"] .hero-section > .container-page { padding-bottom: 21rem; }
+  html[data-hero^="sea"] .hero-sea-bg::before { background-position: var(--sea-pos-phone,80% 55%); height: 24rem; inset: auto 0px 0px; }
+  html[data-hero^="sea"] .hero-sea-bg::after { background: linear-gradient(180deg, rgba(var(--sea-rgb), 1) 0%, rgba(var(--sea-rgb), .78) 22%, rgba(var(--sea-rgb), .18) 52%, rgba(var(--sea-rgb), 0) 72%); height: 24.1rem; inset: auto 0px 0px; }
+  html[data-hero="sea2"], html[data-hero="sea5"] { --sea-pos-phone: 82% 30%; }
+  html[data-hero="sea3"] { --sea-pos-phone: 74% 70%; }
+}
+html[data-hero="sea5"] { --sea-pos: 72% 24%; }
+html[data-hero="sea6"] { --sea-pos: 70% 22%; }
+html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy > p + p, html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy > ul, html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy > ul + div { display: none; }
+@media (min-width: 768px) {
+  html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-section > .container-page { grid-template-columns: 1fr; min-height: 26.5rem; padding-block: 2.5rem; }
+  html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy { max-width: 44rem; }
+  html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy h1 { font-size: 2.75rem; }
+}
+@media (max-width: 767px) {
+  html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-section > .container-page { padding-bottom: 13rem; }
+  html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-sea-bg::before { height: 16rem; }
+  html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-sea-bg::after { height: 16.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-hero^="sea"] .hero-sea-bg::before { animation: auto ease 0s 1 normal none running none; }
+}
 html[data-hero-mode="preview"]:not([data-hero="cards"]):not([data-hero="fly"]):not([data-hero="fan"]):not([data-hero="stack"]) .tarot-peek { display: none; }
 @media (max-width: 767px) {
   .tarot-peek { width: 28%; }

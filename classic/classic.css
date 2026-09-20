@@ -623,7 +623,7 @@ html[data-hero^="sea"] .hero-sea-bg::after { content: ""; background: var(--sea-
   0% { transform: scale(1); }
   100% { transform: scale(1.07); }
 }
-html[data-hero="sea1"], html[data-hero="sea4"], html[data-hero="sea6"] { --sea-photo: url(img/sea-light.jpg); --sea-pos: 70% 62%; --sea-ground: #fbf9f6; --sea-rgb: 251, 249, 246; --sea-veil: linear-gradient(90deg, #fbf9f6f0 0%, #fbf9f6cc 34%, #fbf9f62e 60%, #fbf9f600 76%); }
+html[data-hero="sea1"], html[data-hero="sea4"], html[data-hero="sea6"], html[data-hero="sea7"] { --sea-photo: url(img/sea-light.jpg); --sea-pos: 70% 62%; --sea-ground: #fbf9f6; --sea-rgb: 251, 249, 246; --sea-veil: linear-gradient(90deg, #fbf9f6f0 0%, #fbf9f6cc 34%, #fbf9f62e 60%, #fbf9f600 76%); }
 html[data-hero="sea2"], html[data-hero="sea5"] { --sea-photo: url(img/sea-dusk.jpg); --sea-pos: 72% 50%; --sea-ground: #1a1430; --sea-rgb: 26, 20, 48; --sea-veil: linear-gradient(90deg, #1a1430db 0%, #1a14309e 40%, #1a14301f 72%, #1a14300d 100%); }
 html[data-hero="sea3"] { --sea-photo: url(img/sea-deep.jpg); --sea-pos: 60% 55%; --sea-ground: #0e1424; --sea-rgb: 14, 20, 36; --sea-veil: linear-gradient(90deg, #0e1424cc 0%, #0e142485 42%, #0e142414 74%, #0e142400 100%); }
 html[data-hero^="sea"] .hero-photo-col { display: none; }
@@ -652,6 +652,8 @@ html:is([data-hero="sea2"], [data-hero="sea3"], [data-hero="sea5"]) .hero-copy .
   html[data-hero="sea2"], html[data-hero="sea5"] { --sea-pos-phone: 82% 30%; }
   html[data-hero="sea3"] { --sea-pos-phone: 74% 70%; }
 }
+html[data-hero="sea7"] .hero-copy > p { display: none; }
+html[data-hero="sea7"] .hero-copy > h1 + div { margin-top: 2rem; }
 html[data-hero="sea5"] { --sea-pos: 72% 24%; }
 html[data-hero="sea6"] { --sea-pos: 70% 22%; }
 html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy > p + p, html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy > ul, html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy > ul + div { display: none; }

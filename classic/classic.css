@@ -14,6 +14,24 @@
 @font-face { font-family: "Playfair Display Fallback"; src: local("Times New Roman"); ascent-override: 97.25%; descent-override: 22.56%; line-gap-override: 0%; size-adjust: 111.26%; }
 .playfair_display_100cb642-module__BjVuVG__className { font-family: "Playfair Display", "Playfair Display Fallback"; font-style: normal; }
 .playfair_display_100cb642-module__BjVuVG__variable { --font-playfair: "Playfair Display", "Playfair Display Fallback"; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/9cc5c0547f229dea-s.00y8kskkn0hyx.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/b0947914c9718a1e-s.p.1xjn85gt7t6qs.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/d0b60be57f16ee32-s.1xtu7gopqv2u0.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/1f9e983605289f29-s.3aak_kra40y8r.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/01e4147cff8141ee-s.p.3huc2loe0ie8a.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/9cc5c0547f229dea-s.00y8kskkn0hyx.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/b0947914c9718a1e-s.p.1xjn85gt7t6qs.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/d0b60be57f16ee32-s.1xtu7gopqv2u0.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/1f9e983605289f29-s.3aak_kra40y8r.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/01e4147cff8141ee-s.p.3huc2loe0ie8a.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/9cc5c0547f229dea-s.00y8kskkn0hyx.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/b0947914c9718a1e-s.p.1xjn85gt7t6qs.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/d0b60be57f16ee32-s.1xtu7gopqv2u0.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/1f9e983605289f29-s.3aak_kra40y8r.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/01e4147cff8141ee-s.p.3huc2loe0ie8a.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Cormorant Garamond Fallback"; src: local("Times New Roman"); ascent-override: 95.27%; descent-override: 29.59%; line-gap-override: 0%; size-adjust: 96.98%; }
+.cormorant_garamond_4e612040-module__EWYVCG__className { font-family: "Cormorant Garamond", "Cormorant Garamond Fallback"; font-style: normal; }
+.cormorant_garamond_4e612040-module__EWYVCG__variable { --font-cormorant: "Cormorant Garamond", "Cormorant Garamond Fallback"; }
 @layer properties {
   @supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))) {
   *, ::before, ::after, ::backdrop { --tw-translate-x: 0; --tw-translate-y: 0; --tw-translate-z: 0; --tw-space-y-reverse: 0; --tw-space-x-reverse: 0; --tw-divide-y-reverse: 0; --tw-border-style: solid; --tw-gradient-position: initial; --tw-gradient-from: #0000; --tw-gradient-via: #0000; --tw-gradient-to: #0000; --tw-gradient-stops: initial; --tw-gradient-via-stops: initial; --tw-gradient-from-position: 0%; --tw-gradient-via-position: 50%; --tw-gradient-to-position: 100%; --tw-leading: initial; --tw-font-weight: initial; --tw-tracking: initial; --tw-shadow: 0 0 #0000; --tw-shadow-color: initial; --tw-shadow-alpha: 100%; --tw-inset-shadow: 0 0 #0000; --tw-inset-shadow-color: initial; --tw-inset-shadow-alpha: 100%; --tw-ring-color: initial; --tw-ring-shadow: 0 0 #0000; --tw-inset-ring-color: initial; --tw-inset-ring-shadow: 0 0 #0000; --tw-ring-inset: initial; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-offset-shadow: 0 0 #0000; --tw-backdrop-blur: initial; --tw-backdrop-brightness: initial; --tw-backdrop-contrast: initial; --tw-backdrop-grayscale: initial; --tw-backdrop-hue-rotate: initial; --tw-backdrop-invert: initial; --tw-backdrop-opacity: initial; --tw-backdrop-saturate: initial; --tw-backdrop-sepia: initial; --tw-duration: initial; --tw-content: ""; }
@@ -670,6 +688,28 @@ html:is([data-hero="sea5"], [data-hero="sea6"]) .hero-copy > p + p, html:is([dat
 @media (prefers-reduced-motion: reduce) {
   html[data-hero^="sea"] .hero-sea-bg::before { animation: auto ease 0s 1 normal none running none; }
 }
+html[data-brand^="bronze"] { --color-ink: #2f2f2f; --color-ink-soft: #4b4742; --color-muted: #6f6961; --color-line: #ddd5c9; --color-canvas: #f4efe8; --color-surface: #fffdfa; --color-accent: #9a7856; --color-accent-deep: #7e6144; --color-accent-soft: #eae1d6; --color-sand: #e6dccf; --color-gold: #b08d6b; --color-offline: #9b8ea7; }
+html[data-brand="bronze2"] { --font-display: var(--font-cormorant), Georgia, serif; }
+html[data-brand="bronze2"] h1, html[data-brand="bronze2"] h2, html[data-brand="bronze2"] h3 { letter-spacing: 0px; font-weight: 600; }
+@media (min-width: 1024px) {
+  html[data-brand="bronze2"] h1 { font-size: 3.6rem; line-height: 1.04; }
+}
+.logo-sun, html[data-brand^="bronze"] .logo-arch { display: none; }
+html[data-brand^="bronze"] .logo-sun { color: var(--color-gold); display: block; }
+html[data-brand^="bronze"] .logo-word { font-family: var(--font-cormorant), Georgia, serif; letter-spacing: 0.14em; font-size: 1.45rem; font-weight: 600; }
+@media (max-width: 639px) {
+  html[data-brand^="bronze"] .logo-word { letter-spacing: 0.1em; font-size: 1.2rem; }
+}
+html[data-brand^="bronze"] .btn { letter-spacing: 0.14em; text-transform: uppercase; border-radius: 0.6rem; padding: 0.85rem 1.5rem; font-size: 0.84rem; font-weight: 600; }
+html[data-brand^="bronze"] .btn-primary { background: var(--color-accent); box-shadow: rgba(90, 66, 40, 0.8) 0px 14px 28px -18px; }
+html[data-brand^="bronze"] .btn-primary::after { content: "→"; letter-spacing: 0px; margin-left: 0.15rem; font-size: 1.05em; }
+html[data-brand^="bronze"] .btn-ghost { border-color: var(--color-accent); color: var(--color-accent-deep); background: 0px 0px; }
+@media (hover: hover) {
+  html[data-brand^="bronze"] .btn-primary:hover { background: var(--color-accent-deep); box-shadow: rgba(90, 66, 40, 0.85) 0px 20px 34px -18px; }
+  html[data-brand^="bronze"] .btn-ghost:hover { background: var(--color-accent-soft); color: var(--color-accent-deep); }
+}
+html[data-brand^="bronze"] .hero-badge { color: var(--color-accent-deep); border-color: rgba(154, 120, 86, 0.4); }
+html[data-brand^="bronze"] .hero-section > .absolute { background: linear-gradient(180deg, #ebe3d8 0%, var(--color-canvas) 60%); }
 html[data-hero-mode="preview"]:not([data-hero="cards"]):not([data-hero="fly"]):not([data-hero="fan"]):not([data-hero="stack"]) .tarot-peek { display: none; }
 @media (max-width: 767px) {
   .tarot-peek { width: 28%; }
